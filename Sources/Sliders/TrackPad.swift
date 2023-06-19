@@ -256,8 +256,8 @@ public struct TrackPad: View {
             style.makeTrack(configuration: configuration)
             GeometryReader { proxy in
                 ZStack(alignment: .center) {
-                    self.style.makeThumb(configuration: self.configuration)
-                        .offset(self.thumbOffset(proxy))
+                    Color.clear
+                        .contentShape(Rectangle())
                         .gesture(
                             DragGesture(minimumDistance: 0, coordinateSpace: .named(self.space))
                                 .onChanged({
@@ -268,7 +268,8 @@ public struct TrackPad: View {
                                     self.constrainValue(proxy, $0.location)
                                     self.isActive = false
                                 }))
-
+                    self.style.makeThumb(configuration: self.configuration)
+                        .offset(self.thumbOffset(proxy))
                 }.frame(width: proxy.size.width, height: proxy.size.height)
             }
         }.coordinateSpace(name: space)
