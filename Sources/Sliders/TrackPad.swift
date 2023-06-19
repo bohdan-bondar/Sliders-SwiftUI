@@ -177,12 +177,14 @@ public struct TrackPad: View {
         self.isDisabled = isDisabled
     }
 
-    public init(_ value: Binding<CGPoint>){
+    public init(_ value: Binding<CGPoint>, _ isBeingAdjusted: Binding<Bool>){
         self._value = value
+        self._isBeingAdjusted = isBeingAdjusted
     }
     /// Use this initializer for when the x and y ranges are the same
-    public init(_ value: Binding<CGPoint>, range: ClosedRange<CGFloat>){
+    public init(_ value: Binding<CGPoint>, _ isBeingAdjusted: Binding<Bool>, range: ClosedRange<CGFloat>){
         self._value = value
+        self._isBeingAdjusted = isBeingAdjusted
         self.rangeX = range
         self.rangeY = range
     }
