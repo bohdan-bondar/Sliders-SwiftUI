@@ -166,6 +166,7 @@ public struct TrackPad: View {
     @State private var atYLimit: Bool = false
     // MARK: Inputs
     @Binding public var value: CGPoint
+    @Binding public var isBeingAdjusted: Bool
     public var rangeX: ClosedRange<CGFloat> = 0...1
     public var rangeY: ClosedRange<CGFloat> = 0...1
     public var isDisabled: Bool = false
@@ -263,10 +264,12 @@ public struct TrackPad: View {
                                 .onChanged({
                                     self.constrainValue(proxy, $0.location)
                                     self.isActive = true
+                                    self.isBeingAdjusted = true
                                 })
                                 .onEnded({
                                     self.constrainValue(proxy, $0.location)
                                     self.isActive = false
+                                    self.isBeingAdjusted = false
                                 }))
                     self.style.makeThumb(configuration: self.configuration)
                         .offset(self.thumbOffset(proxy))
