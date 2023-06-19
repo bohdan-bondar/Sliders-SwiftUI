@@ -170,8 +170,9 @@ public struct TrackPad: View {
     public var rangeX: ClosedRange<CGFloat> = 0...1
     public var rangeY: ClosedRange<CGFloat> = 0...1
     public var isDisabled: Bool = false
-    public init(value: Binding<CGPoint>, rangeX: ClosedRange<CGFloat>, rangeY: ClosedRange<CGFloat>, isDisabled: Bool = false){
+    public init(value: Binding<CGPoint>, isBeingAdjusted: Binding<Bool>, rangeX: ClosedRange<CGFloat>, rangeY: ClosedRange<CGFloat>, isDisabled: Bool = false){
         self._value = value
+        self._isBeingAdjusted = isBeingAdjusted
         self.rangeX = rangeX
         self.rangeY = rangeY
         self.isDisabled = isDisabled
